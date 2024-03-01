@@ -11,10 +11,6 @@
     },
     "adbprivateEndpointSubnetCidr": {
       "value": "10.110.2.160/27"
-    },
-    "location": {
-      "value": "australiaeast"
     }
-
   }
 }
