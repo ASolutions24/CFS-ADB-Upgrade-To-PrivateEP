@@ -22,7 +22,7 @@ parameters:
 
 stages:
 
-- stage: Preview
+- stage: "${{ parameters.stageId }}"
   jobs:
   - job: Preview
     steps:
