@@ -33,7 +33,7 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           az deployment group what-if \
-            --template-file $(Build.SourcesDirectory)/${{parameters.templateFile}} \
+            --template-file '$(Build.SourcesDirectory)/${{parameters.templateFile}}' \
             --parameters '$(Build.SourcesDirectory)/${{parameters.templateParameterFile}}' \
             --resource-group '${{ parameters.resourceGroupName }}'
 
