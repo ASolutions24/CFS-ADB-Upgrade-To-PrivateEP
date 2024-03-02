@@ -13,7 +13,7 @@ pool:
   vmImage: $(vmImageName)
 
 stages:
-- template: templates/deploy-notebooks.yml
+- template: 'deploy-pipeline.yml'
   parameters:
     stageId: "Deploy_to_Dev_Environment"
     env: "dev"
@@ -22,7 +22,7 @@ stages:
     serviceConnection: $(hub-service-connection-name)
     notebooksPath: $(notebooksPath)
 
-- template: templates/deploy-notebooks.yml
+- template: 'deploy-pipeline.yml'
   parameters:
     dependsOn: ["Deploy_to_Dev_Environment"]
     stageId: "Deploy_to_Prod_Environment"
