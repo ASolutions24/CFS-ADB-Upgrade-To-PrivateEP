@@ -37,10 +37,10 @@ stages:
           - task: AzureResourceManagerTemplateDeployment@3
             inputs:
               deploymentScope: 'Resource Group'
-              resourceGroupName: '$(resourceGroupName)'
-              azureResourceManagerConnection: '$(serviceConnection)'
+              resourceGroupName: ${{ parameters.resourceGroupName }}
+              azureResourceManagerConnection: ${{ parameters.serviceConnection }}
               action: 'Create Or Update Resource Group'
-              location: '$(location)'
+              location: ${{ parameterslocation }}
               templateLocation: 'Linked artifact'
               csmFile: '$(Build.SourcesDirectory)/${{parameters.templateFile}}'
               csmParametersFile: '$(Build.SourcesDirectory)/${{parameters.templateParameterFile}}'
