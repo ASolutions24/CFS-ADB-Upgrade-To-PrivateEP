@@ -7,12 +7,6 @@ variables:
   value: "windows-latest"
 - name: notebooksPath
   value: "notebooks"
-- name: location
-  value: "australiaeast"
-- name: templateFile
-  value: "/main.bicep"
-- name: templateParameterFile
-  value: "parameters/vnetUpgrade-prod.parameters.json"
 
 pool:
   vmImage: $(vmImageName)
@@ -36,3 +30,6 @@ stages:
     resourceGroupName: $(prod-resource-group-name)
     serviceConnection: $(prod-service-connection-name)
     notebooksPath: $(notebooksPath)
+    location: "australiaeast"
+    templateFile: "/main.bicep"
+    templateParameterFile: "parameters/vnetUpgrade-prod.parameters.json"
