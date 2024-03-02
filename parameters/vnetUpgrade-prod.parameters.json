@@ -1,0 +1,73 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "existingVNETName": {
+      "value": "vnet-sec-dbw-prod"
+    },
+    "adbPrivateEndpointSubnetName": {
+      "value": "sn-adb-PrivateEndpoint"
+    },
+    "adbprivateEndpointSubnetCidr": {
+      "value": "10.110.2.160/27"
+    },
+    "nsgName": {
+      "value": "nsg-adb-PrivateEndpoint"
+    },
+    "location": {
+      "value": "australiaeast"
+    },
+    "nsgRules": {
+      "value": [
+        {
+          "name": "Allow-Inbound-Test-Rule",
+          "description": "Required to restrict sources allowed to connect to ADB private endpoints.",
+          "protocol": "*",
+          "sourcePortRange": "*",
+          "destinationPortRange": "443",
+          "sourceAddressPrefix": "VirtualNetwork",
+          "destinationAddressPrefix": "10.110.2.160/27",
+          "access": "Allow",
+          "priority": 100,
+          "direction": "Inbound",
+          "sourcePortRanges": [],
+          "destinationPortRanges": [],
+          "sourceAddressPrefixes": [],
+          "destinationAddressPrefixes": []
+        },
+        {
+          "name": "Deny-All-Outbound",
+          "description": "Deny all outbound",
+          "protocol": "*",
+          "sourcePortRange": "*",
+          "destinationPortRange": "*",
+          "sourceAddressPrefix": "*",
+          "destinationAddressPrefix": "*",
+          "access": "Deny",
+          "priority": 4096,
+          "direction": "Outbound",
+          "sourcePortRanges": [],
+          "destinationPortRanges": [],
+          "sourceAddressPrefixes": [],
+          "destinationAddressPrefixes": []
+        }
+      ]
+    },
+    "rtName": {
+      "value": "rt-adb-PrivateEndpoint"
+    },
+    "routeTables": {
+      "value": [
+        {
+          "name": "udr-DefaultRoute",
+          "addressPrefix": "0.0.0.0/0",
+          "nextHopType": "VirtualAppliance",
+          "nextHopIpAddress": "10.40.1.68"
+        }
+      ]
+    },
+    "disableBgpRoutePropagation": {
+      "value": false
+    }
+  }
+}
