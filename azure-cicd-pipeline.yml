@@ -8,6 +8,12 @@ variables:
   value: "windows-latest"
 - name: notebooksPath
   value: "notebooks"
+- name: location
+  value: "australiaeast"
+- name: templateFile
+  value: "/main.bicep"
+- name: templateParameterFile
+  value: "parameters/vnetUpgrade-prod.parameters.json"
 
 pool:
   vmImage: $(vmImageName)

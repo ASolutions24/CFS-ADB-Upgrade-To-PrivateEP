@@ -15,11 +15,12 @@ parameters:
 - name: notebooksPath
   type: string
 
-
-variables:
-  location: 'australiaeast'
-  templateFile: '/main.bicep'
-  templateParameterFile: 'parameters/vnetUpgrade-prod.parameters.json'
+- name: location
+  type: string
+- name: templateFile
+  type: string
+- name: templateParameterFile
+  type: string
 
 
 stages:
@@ -36,9 +37,9 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           az deployment group what-if \
-            --template-file $(Build.SourcesDirectory)/$(templateFile) \
-            --parameters '$(Build.SourcesDirectory)/$(templateParameterFile)' \
-            --resource-group '$(resourceGroupName)'
+            --template-file '$(Build.SourcesDirectory)/${{parameters.templateFile}}' \
+            --parameters '$(Build.SourcesDirectory)/${{parameters.templateParameterFile}}' \
+            --resource-group '${{parameters.resourceGroupName}}'
 
 - stage: Deploy
   jobs:
@@ -58,7 +59,7 @@ stages:
               action: 'Create Or Update Resource Group'
               location: '$(location)'
               templateLocation: 'Linked artifact'
-              csmFile: '$(Build.SourcesDirectory)/$(templateFile)'
-              csmParametersFile: '$(Build.SourcesDirectory)/$(templateParameterFile)'
+              csmFile: '$(Build.SourcesDirectory)/${{parameters.templateFile}}'
+              csmParametersFile: '$(Build.SourcesDirectory)/${{parameters.templateParameterFile}}'
               deploymentMode: 'Incremental'
               deploymentName: 'DeployPipelineTemplate'
