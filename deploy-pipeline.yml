@@ -23,7 +23,6 @@ parameters:
 stages:
 
 - stage: Preview
-  dependsOn: Validate
   jobs:
   - job: Preview
     steps:
