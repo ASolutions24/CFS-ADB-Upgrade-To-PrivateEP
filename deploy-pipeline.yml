@@ -17,14 +17,10 @@ parameters:
 
 
 variables:
-  vmImageName: 'ubuntu-latest'
   location: 'australiaeast'
   templateFile: '/main.bicep'
   templateParameterFile: 'parameters/vnetUpgrade-prod.parameters.json'
 
-
-pool:
-  vmImage: $(vmImageName)
 
 stages:
 
