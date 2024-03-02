@@ -1,17 +1,33 @@
+//Subnet
 param existingVNETName string //= 'vnet-sec-dbw-prod'
 param adbPrivateEndpointSubnetName string //= 'sn-test-newsubnet'
 param adbprivateEndpointSubnetCidr string //= '10.110.2.160/27'
 
-resource vnet 'Microsoft.Network/virtualNetworks@2021-03-01' existing = {
-  name: existingVNETName
-}
+//NSG 
+param nsgName string //= 'nsg-test'
+param location string //= 'australiaeast' 
+param nsgRules array
 
-resource subnet 'Microsoft.Network/virtualNetworks/subnets@2023-09-01' = {
- parent: vnet
- name: adbPrivateEndpointSubnetName
- properties: {
-   addressPrefix: adbprivateEndpointSubnetCidr 
-   privateEndpointNetworkPolicies:'Enabled'
-   privateLinkServiceNetworkPolicies:'Enabled'
- }
+//Route Table
+param rtName string
+param routeTables array
+param disableBgpRoutePropagation bool
+
+
+module vnetUpgrade './modules/vnetUpgrade.bicep' = {
+  name:'deployVnetUpgrade'
+  params: {
+     existingVNETName:existingVNETName
+     adbPrivateEndpointSubnetName:adbPrivateEndpointSubnetName
+     adbprivateEndpointSubnetCidr:adbprivateEndpointSubnetCidr
+
+     nsgName:nsgName
+     location:location
+     nsgRules:nsgRules
+
+     rtName:rtName
+     routeTables:routeTables
+     disableBgpRoutePropagation:disableBgpRoutePropagation
+  }
+
 }
