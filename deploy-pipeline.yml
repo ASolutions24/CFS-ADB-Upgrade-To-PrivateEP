@@ -22,33 +22,19 @@ parameters:
 
 stages:
 
-- stage: Preview
-  dependsOn: Validate
-  jobs:
-  - job: Preview
-    steps:
-    - task: AzureCLI@2
-      inputs:
-        azureSubscription: '$(serviceConnection)'
-        scriptType: 'bash'
-        scriptLocation: 'inlineScript'
-        inlineScript: |
-          az deployment group what-if \
-            --template-file '$(Build.SourcesDirectory)/${{parameters.templateFile}}' \
-            --parameters '$(Build.SourcesDirectory)/${{parameters.templateParameterFile}}' \
-            --resource-group '${{parameters.resourceGroupName}}'
-
-- stage: Deploy
+- stage: "${{ parameters.stageId }}"
+  displayName: "Deploying to [${{upper(parameters.env)}}] Environment"
+  dependsOn: ${{ parameters.dependsOn }}
   jobs:
   - deployment: Deploy
-    environment: BicepEnvironment
+    displayName: "Deploying Bicep Template"
+    environment: ${{parameters.environmentName}}
     strategy:
       runOnce:
         deploy:
           steps:
           - checkout: self
           - task: AzureResourceManagerTemplateDeployment@3
-            name: DeployBicepTemplate
             inputs:
               deploymentScope: 'Resource Group'
               resourceGroupName: '$(resourceGroupName)'
