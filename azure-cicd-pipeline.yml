@@ -18,7 +18,6 @@ stages:
     environmentName: $(prod-environment-name)
     resourceGroupName: $(prod-resource-group-name)
     serviceConnection: $(prod-service-connection-name)
-    notebooksPath: $(notebooksPath)
     location: "australiaeast"
     templateFile: "/main.bicep"
     templateParameterFile: "parameters/vnetUpgrade-prod.parameters.json"
