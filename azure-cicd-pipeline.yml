@@ -4,7 +4,6 @@ variables:
 - group: cfs-adb-upgrade-hub
 - group: cfs-adb-upgrade-prod
 - name: vmimageName
-
   value: "windows-latest"
 - name: notebooksPath
   value: "notebooks"
