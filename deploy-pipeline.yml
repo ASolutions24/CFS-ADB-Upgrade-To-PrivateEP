@@ -40,7 +40,7 @@ stages:
               resourceGroupName: ${{ parameters.resourceGroupName }}
               azureResourceManagerConnection: ${{ parameters.serviceConnection }}
               action: 'Create Or Update Resource Group'
-              location: ${{ parameterslocation }}
+              location: ${{ parameters.location }}
               templateLocation: 'Linked artifact'
               csmFile: '$(Build.SourcesDirectory)/${{parameters.templateFile}}'
               csmParametersFile: '$(Build.SourcesDirectory)/${{parameters.templateParameterFile}}'
