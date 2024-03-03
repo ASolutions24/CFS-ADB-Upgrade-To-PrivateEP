@@ -32,8 +32,8 @@
           "direction": "Inbound",
           "sourcePortRanges": [],
           "destinationPortRanges": [],
-          "sourceAddressPrefixes": [],
-          "destinationAddressPrefixes": ["10.110.1.80/28","10.110.1.96/28"]
+          "sourceAddressPrefixes": ["10.110.1.80/28","10.110.1.96/28"],
+          "destinationAddressPrefixes": []
         },
         {
           "name": "Deny-All-Outbound",
