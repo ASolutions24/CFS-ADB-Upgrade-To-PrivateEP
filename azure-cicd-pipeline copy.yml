@@ -1,5 +1,21 @@
 trigger: none
 
+parameters:
+- name: deploymentEnvironment
+  displayName: Target Deployment Environment
+  type: string
+  default: "Non-Production"
+  values:
+  - "Non-Production"
+  - "Production"
+- name: useWhatIfDeploymentType
+  displayName: what-if Deployment
+  type: boolean
+  default: true
+  values:
+  - false
+  - true
+
 variables:
 - group: cfs-adb-upgrade-hub
 - group: cfs-adb-upgrade-prod
