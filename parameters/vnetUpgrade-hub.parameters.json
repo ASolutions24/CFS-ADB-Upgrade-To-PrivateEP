@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "existingVNETName": {
-      "value": "vnet-sec-dbw-prod"
+      "value": "vnet-sec-dbw-hub"
     },
     "adbPrivateEndpointSubnetName": {
       "value": "sn-adb-hub-PrivateEndpoint"
