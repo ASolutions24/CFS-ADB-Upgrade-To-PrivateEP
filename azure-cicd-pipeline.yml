@@ -13,7 +13,7 @@ stages:
 
 - template: 'deploy-pipeline.yml'
   parameters:
-    stageId: "Deploy_to_Prod_Environment"
+    stageId: "Deploying to [${{upper(parameters.env)}}] Environment"
     env: "prod"
     environmentName: $(prod-environment-name)
     resourceGroupName: $(prod-resource-group-name)
