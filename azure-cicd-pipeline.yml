@@ -13,6 +13,17 @@ stages:
 
 - template: 'deploy-pipeline.yml'
   parameters:
+    stageId: "Deploy_to_Hub_Environment"
+    env: "hub"
+    environmentName: $(hub-environment-name)
+    resourceGroupName: $(hub-resource-group-name)
+    serviceConnection: $(hub-service-connection-name)
+    location: "australiaeast"
+    templateFile: "/main.bicep"
+    templateParameterFile: "parameters/vnetUpgrade-hub.parameters.json"
+
+- template: 'deploy-pipeline.yml'
+  parameters:
     stageId: "Deploy_to_Prod_Environment"
     env: "prod"
     environmentName: $(prod-environment-name)
@@ -22,14 +33,3 @@ stages:
     templateFile: "/main.bicep"
     templateParameterFile: "parameters/vnetUpgrade-prod.parameters.json"
 
-- template: 'deploy-pipeline.yml'
-
-  parameters:
-    stageId: "Deploy_to_Hub_Environment"
-    env: "hub"
-    environmentName: $(hub-environment-name)
-    resourceGroupName: $(hub-resource-group-name)
-    serviceConnection: $(hub-service-connection-name)
-    location: "australiaeast"
-    templateFile: "/main.bicep"
-    templateParameterFile: "parameters/vnetUpgrade-hub.parameters.json"
