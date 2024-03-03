@@ -25,15 +25,15 @@
           "protocol": "*",
           "sourcePortRange": "*",
           "destinationPortRange": "443",
-          "sourceAddressPrefix": "VirtualNetwork",
-          "destinationAddressPrefix": "10.110.2.160/27",
+          "sourceAddressPrefix": "",
+          "destinationAddressPrefix": "10.110.1.112/28",
           "access": "Allow",
           "priority": 100,
           "direction": "Inbound",
           "sourcePortRanges": [],
           "destinationPortRanges": [],
           "sourceAddressPrefixes": [],
-          "destinationAddressPrefixes": []
+          "destinationAddressPrefixes": ["10.110.1.80/28","10.110.1.96/28"]
         },
         {
           "name": "Deny-All-Outbound",
